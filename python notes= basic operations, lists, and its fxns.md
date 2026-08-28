@@ -1,21 +1,26 @@
- Casting: Converting one data type to another data type. We use _int()_, _float()_, _str()_, _list_, _set_ When we do arithmetic operations string numbers should be first converted to int or float otherwise it will return an error. If we concatenate a number with a string, the number should be first converted to a string. We will talk about concatenation in String section.
-# int to float
+ # Casting: 
+ Converting one data type to another data type. We use _int()_, _float()_, _str()_, _list_, _set_ When we do arithmetic operations string numbers should be first converted to int or float otherwise it will return an error. If we concatenate a number with a string, the number should be first converted to a string. We will talk about concatenation in String section.
+# int to float:
+```
 num_int = 10 
 print('num_int',num_int)         # 10
 num_float = float(num_int)
 print('num_float:', num_float)   # 10.0
-
-# float to int
+```
+# float to int:
+```
 gravity = 9.81
 print(int(gravity))             # 9
-
-# int to str
+```
+# int to str:
+```
 num_int = 10
 print(num_int)                  # 10
 num_str = str(num_int)
 print(num_str)                  # '10'
-
-# str to int or float
+```
+# str to int or float:
+```
 num_str = '10.6'
 num_float = float(num_str)  # Convert the string to a float first
 num_int = int(num_float)    # Then convert the float to an integer
@@ -23,8 +28,9 @@ print('num_int', int(num_str))      # 10
 print('num_float', float(num_str))  # 10.6
 num_int = int(num_float)
 print('num_int', int(num_int))      # 10
-
-# str to list
+```
+# str to list:
+```
 first_name = 'ok'
 print(first_name)              
 first_name_to_list = list(first_name)
@@ -36,8 +42,9 @@ basic operations and function of py
 string is denoted with " or ' enclosed
 like... \n is used to add line before and after the strings 
  like...+ to add other strings together = also called as concatenation
+```
 FUNCTIONS:
-1. .lower() = to make all letters of strings to lower case letter
+```1. .lower() = to make all letters of strings to lower case letter
 2. .upper() = to make all letters of strings to upper case letters
 3. .isupper or .islower = to check if string has upper or lower case letters : if yes = True, if no = False
 4. len()= position of letter         eg= ram = len(a) =  2
@@ -54,8 +61,10 @@ FUNCTIONS:
 12. sqrt is used for sq root
 13. use remove prefix() to remove prefix of any word or number by typing in the bracket
 14. use lstrip() to strip of any letter from word.
+```
 ===============
 LISTS:
+```
 15. use sq brackets to make a list with commas to sepreate things.
 16. you can use numbers or index of element to show as output
 1st element's index will be 0 in sq brackets
@@ -63,8 +72,10 @@ LISTS:
 18. if you don't want 1st element  use 1: .
 19. we can end selection in above point but 1:3 or 1:2 etc. it takes elements after 1 and 3, 1 and 2 respectively
 or you can change the elements by something else by assigning index number to other element.
-==========
+```
+===============
 LIST FUNCTIONS :
+```
 20. extend() function = this can extend list further in it
 just put all elemets you need in bracket above 
 or you can make another list and  put it in bracket or u can use .append () fxn for same
@@ -76,6 +87,7 @@ or you can make another list and  put it in bracket or u can use .append () fxn 
 sin list. (put item in brackets.
 25. We can use Sort() To sort the list in Ascending order
  26. Make a new copy() To copy the list
+```
 
 
 
