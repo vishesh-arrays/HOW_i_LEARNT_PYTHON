@@ -137,3 +137,5 @@ This profile will evolve as I do.
 **Thanks for visiting my GitHub!** ⭐
 
 > *Every expert was once a beginner who kept going.*
+
+(I took inspirations and data from multiple sources like website, videos, and other github repositories, if my gives data is inaccurate/up to time, please check current trends.There could be problems, inaccuracy in my code, use with caution.)
