@@ -42,7 +42,8 @@ Object-Oriented Programming (OOP) organizes code around objects that contain dat
 Create a file called `car.py` with a class
 
 ```python
-class Car:    pass  # placeholder that does nothing
+class Car:
+pass  # placeholder that does nothing
 ```
 
 Create another file called `driver.py` to use the class
@@ -79,7 +80,8 @@ Classes and objects serve different purposes. A class is a blueprint, while an o
 Here is an example of a class:
 
 ```python
-class Dog:    # shared by all dogs    species = "Canis familiaris"
+class Dog:    # shared by all dogs
+species = "Canis familiaris"
 ```
 
 Now we can access the class attribute directly using `Dog.species` where `Dog` is the class name:
@@ -93,25 +95,32 @@ This accesses data from the class itself, not from any specific object.
 Now lets explore how it works in objects. Create objects from the Dog class:
 
 ```python
-dog1 = Dog()dog2 = Dog()
+dog1 = Dog()
+dog2 = Dog()
 ```
 
 Objects can have individual attributes that classes cannot:
 
 ```python
-dog1.name = "Nicky"dog1.breed = "Siberian Husky"dog2.name = "Teemon" dog2.breed = "Shu'ali"
+dog1.name = "Nicky"
+dog1.breed = "Siberian Husky"
+dog2.name = "Teemon" dog2.breed = "Shu'ali"
 ```
 
 Compare what classes and objects can do:
 
 ```python
-print(f"Object 1: {dog1.name} is a {dog1.breed}")print(f"Object 2: {dog2.name} is a {dog2.breed}")print(f"Both share class attribute: {Dog.species}")
+print(f"Object 1: {dog1.name} is a {dog1.breed}")
+print(f"Object 2: {dog2.name} is a {dog2.breed}")
+print(f"Both share class attribute: {Dog.species}")
 ```
 
 Output:
 
 ```python
-Object 1: Nicky is a Siberian HuskyObject 2: Teemon is a Shu'aliBoth share class attribute: Canis familiaris
+Object 1: Nicky is a Siberian Husky
+Object 2: Teemon is a Shu'ali
+Both share class attribute: Canis familiaris
 ```
 
 **Key Difference:** The class `Dog` defines what all dogs have in common, while objects `dog1` and `dog2` represent specific, individual dogs with unique properties.
@@ -123,7 +132,11 @@ The self parameter refers to the instance of a class within methods. It allows y
 Here is an example of a class with methods using self:
 
 ```python
-class Car:    def honk(self):        print("Beep beep!")        def describe(self):        print(f"I am a {self.color} {self.model}")
+class Car:
+def honk(self):
+print("Beep beep!")
+def describe(self):
+print(f"I am a {self.color} {self.model}")
 ```
 
 *The self parameter must always be the first parameter in method definitions. It tells the method which specific object is being used.*
@@ -131,19 +144,23 @@ class Car:    def honk(self):        print("Beep beep!")    �
 Create a car object and add attributes:
 
 ```python
-my_car = Car()my_car.color = "Red"my_car.model = "Sedan"
+my_car = Car()
+my_car.color = "Red"
+my_car.model = "Sedan"
 ```
 
 Now call the methods:
 
 ```python
-my_car.honk()my_car.describe()
+my_car.honk()
+my_car.describe()
 ```
 
 Output:
 
 ```python
-Beep beep!I am a Red Sedan
+Beep beep!
+I am a Red Sedan
 ```
 
 *Notice that when calling `my_car.describe()`, you don't pass anything for self - Python automatically passes `my_car` as the self parameter.*
@@ -151,7 +168,8 @@ Beep beep!I am a Red Sedan
 Here's what happens behind the scenes:
 
 ```python
-# When you write this:my_car.describe()# Python actually does this:Car.describe(my_car)
+# When you write this:my_car.describe()
+# Python actually does this:Car.describe(my_car)
 ```
 
 *The self parameter lets each object access its own data. Without self, methods wouldn't know which object's attributes to use.
@@ -165,7 +183,15 @@ Methods are functions that belong to a class. They define the behaviors or actio
 Here is an example of a class with methods:
 
 ```python
-class Calculator:    def greet(self):        print("Hello! I'm a calculator.")        def add(self, a, b):        return a + b        def multiply(self, x, y):        result = x * y        print(f"{x} × {y} = {result}")        return result
+class Calculator:
+def greet(self):
+print("Hello! I'm a calculator.")
+def add(self, a, b):
+return a + b
+def multiply(self, x, y):
+result = x * y
+print(f"{x} × {y} = {result}")
+return result
 ```
 
 Create a calculator object:
@@ -183,7 +209,8 @@ my_calc.greet()
 Call methods with parameters:
 
 ```python
-sum_result = my_calc.add(5, 3)print(sum_result)
+sum_result = my_calc.add(5, 3)
+print(sum_result)
 ```
 
 Call a method that both prints and returns a value:
@@ -217,37 +244,55 @@ There are two types of attributes: 
 **Class attributes** - shared by all objects of the class:
 
 ```python
-class Student:    school_name = "Python Academy"  # class attribute
+class Student:
+school_name = "Python Academy"
+# class attribute
 ```
 
 **Instance attributes** - unique to each object:
 
 ```python
-class Student:    school_name = "Python Academy"        def set_info(self, name, age):        self.name = name    # instance attribute        self.age = age      # instance attribute
+class Student:
+school_name = "Python Academy"
+def set_info(self, name, age):
+self.name = name
+# instance attribute
+self.age = age
+# instance attribute
 ```
 
 Create student objects and set their individual data:
 
 ```python
-student1 = Student()student2 = Student()student1.set_info("Alice", 20)student2.set_info("Bob", 22)
+student1 = Student()
+student2 = Student()
+student1.set_info("Alice", 20)
+student2.set_info("Bob", 22)
 ```
 
 Access instance attributes (unique to each object):
 
 ```python
-print(student1.name)    # Aliceprint(student2.name)    # Bobprint(student1.age)     # 20
+print(student1.name)
+# Aliceprint(student2.name)
+# Bobprint(student1.age)     # 20
 ```
 
 Access class attributes (same for all objects):
 
 ```python
-print(student1.school_name)    # Python Academyprint(student2.school_name)    # Python Academyprint(Student.school_name)     # Python Academy
+print(student1.school_name)
+# Python Academyprint(student2.school_name)
+ # Python Academyprint(Student.school_name)
+# Python Academy
 ```
 
 Output:
 
 ```python
-AliceBob20Python AcademyPython AcademyPython Academy
+AliceBob20Python
+AcademyPython
+AcademyPython Academy
 ```
 
 Key Difference: Class attributes are shared by all objects, while instance attributes are unique to each object. Use `self.attribute_name` for instance attributes and just `attribute_name` for class attributes.
@@ -259,7 +304,10 @@ The `__init__` method is a special method that automatically runs when you cre
 Here is an example of a class with a constructor:
 
 ```python
-class Dog:    def __init__(self, name, breed):        self.name = name        self.breed = breed
+class Dog:
+def __init__(self, name, breed):
+self.name = name
+self.breed = breed
 ```
 
 The `__init__` method takes parameters and assigns them to instance attributes using `self`.
@@ -267,7 +315,8 @@ The `__init__` method takes parameters and assigns them to instance attributes
 Create objects using the constructor:
 
 ```python
-rex = Dog("Rex", "German Shepherd")buddy = Dog("Buddy", "Golden Retriever")
+rex = Dog("Rex", "German Shepherd")
+buddy = Dog("Buddy", "Golden Retriever")
 ```
 
 When you call `Dog("Rex", "German Shepherd")`, Python automatically calls `__init__` and passes the arguments.
@@ -275,19 +324,29 @@ When you call `Dog("Rex", "German Shepherd")`, Python automatically calls `__i
 Access the attributes that were set by the constructor:
 
 ```python
-print(rex.name)print(rex.breed)print(buddy.name)print(buddy.breed)
+print(rex.name
+)print(rex.breed)
+print(buddy.name)
+print(buddy.breed)
 ```
 
 Output:
 
 ```python
-RexGerman ShepherdBuddyGolden Retriever
+RexGerman
+ShepherdBuddyGolden
+Retriever
 ```
 
 You can also have a constructor with default values:
 
 ```python
-class Cat:    def __init__(self, name, age=1):        self.name = name        self.age = age# Create catsfluffy = Cat("Fluffy", 3)whiskers = Cat("Whiskers")  # age defaults to 1print(f"{fluffy.name} is {fluffy.age} years old")print(f"{whiskers.name} is {whiskers.age} years old")
+class Cat:
+def __init__(self, name, age=1):
+self.name = name
+self.age = age# Create catsfluffy = Cat("Fluffy", 3)whiskers = Cat("Whiskers")
+ # age defaults to 1print(f"{fluffy.name} is {fluffy.age} years old")
+print(f"{whiskers.name} is {whiskers.age} years old")
 ```
 
 Output:
