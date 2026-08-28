@@ -1,4 +1,5 @@
- 1.
+# LAMBDA
+1.
 A **lambda function** is a small, anonymous function defined using the `lambda` keyword. Lambda functions can take any number of arguments but can only have one expression. They are useful for creating simple, one-line functions without the need for a full function definition using the `def` keyword.
 
 The syntax of a lambda function is:
