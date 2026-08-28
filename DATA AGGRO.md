@@ -1,3 +1,4 @@
+# LIST COMPREHENSIONS/DATA AGGREGATION:
 List comprehensions provide a concise way to create new lists based on existing iterables. You can integrate data aggregation functions like `sum()`, `min()`, and `max()` directly within list comprehensions to perform calculations on the elements of the new list as it's being created.
 
 Calculating the Sum of Squares:
