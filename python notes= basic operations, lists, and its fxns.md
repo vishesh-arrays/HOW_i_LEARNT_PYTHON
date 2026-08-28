@@ -1,11 +1,6 @@
-
-![[Pasted image 20260523143930.png|578]]
-![[Pasted image 20260523143957.png|575]]
-![[Pasted image 20260523144012.png|572]]
-![[Pasted image 20260523144032.png|572]]
-= Casting: Converting one data type to another data type. We use _int()_, _float()_, _str()_, _list_, _set_ When we do arithmetic operations string numbers should be first converted to int or float otherwise it will return an error. If we concatenate a number with a string, the number should be first converted to a string. We will talk about concatenation in String section.
+ Casting: Converting one data type to another data type. We use _int()_, _float()_, _str()_, _list_, _set_ When we do arithmetic operations string numbers should be first converted to int or float otherwise it will return an error. If we concatenate a number with a string, the number should be first converted to a string. We will talk about concatenation in String section.
 # int to float
-num_int = 10
+num_int = 10 
 print('num_int',num_int)         # 10
 num_float = float(num_int)
 print('num_float:', num_float)   # 10.0
@@ -30,10 +25,10 @@ num_int = int(num_float)
 print('num_int', int(num_int))      # 10
 
 # str to list
-first_name = 'Asabeneh'
-print(first_name)               # 'Asabeneh'
+first_name = 'ok'
+print(first_name)              
 first_name_to_list = list(first_name)
-print(first_name_to_list)            # ['A', 's', 'a', 'b', 'e', 'n', 'e', 'h']
+print(first_name_to_list)            # ['o','k']
 #%% can be used to make cell in code.
 all numbering starts from 0 not from 1
 create a strn value by s:
