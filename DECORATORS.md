@@ -1,4 +1,4 @@
-Introduction to Decorators
+# Introduction to Decorators
 
 Decorators are a way to modify or enhance functions and classes without changing their original code. They use the `@` symbol.
 
@@ -29,13 +29,17 @@ say_hello()
 Output:
 
 ```python
-Before function runsHello!After function runs
+Before function runs
+Hello!
+After function runs
 ```
 
 The `@my_decorator` is equivalent to writing:
 
 ```python
-def say_hello():    print("Hello!")say_hello = my_decorator(say_hello)
+def say_hello():
+print("Hello!")
+say_hello = my_decorator(say_hello)
 ```
 
 But the `@` syntax is much cleaner and easier to read.
@@ -49,7 +53,15 @@ The `@property` decorator allows you to access methods like attributes, provid
 Here is an example of a class using `@property`:
 
 ```python
-class Circle:    def __init__(self, radius):        self._radius = radius        @property    def radius(self):        return self._radius        @property    def area(self):        return 3.14159 * self._radius ** 2
+class Circle:
+def __init__(self, radius):
+self._radius = radius
+@property
+ def radius(self):
+return self._radius
+ @property
+def area(self):
+return 3.14159 * self._radius ** 2
 ```
 
 Create a circle and access properties:
@@ -61,7 +73,8 @@ my_circle = Circle(5)
 Access properties like regular attributes:
 
 ```python
-print(my_circle.radius)print(my_circle.area)
+print(my_circle.radius)
+print(my_circle.area)
 ```
 
 Output:
@@ -75,13 +88,28 @@ Notice you don't use parentheses `()` when accessing properties - they look li
 Add a setter to allow changing values:
 
 ```python
-class Circle:    def __init__(self, radius):        self._radius = radius        @property    def radius(self):        return self._radius        @radius.setter    def radius(self, value):        if value > 0:            self._radius = value        else:            print("Radius must be positive!")
+class Circle:
+def __init__(self, radius):
+self._radius = radius
+ @property
+def radius(self):
+return self._radius
+@radius.setter
+def radius(self, value):
+if value > 0:
+self._radius = value
+else:
+print("Radius must be positive!")
 ```
 
 Now you can set the radius like an attribute:
 
 ```python
-my_circle = Circle(5)my_circle.radius = 10  # Uses the setterprint(my_circle.radius)  # Uses the getter
+my_circle = Circle(5)
+my_circle.radius = 10
+# Uses the setter
+print(my_circle.radius)
+ # Uses the getter
 ```
 
 Output:
@@ -100,13 +128,21 @@ The `@staticmethod` decorator creates methods that don't need `self` or the 
 Here is an example of a class with static methods:
 
 ```python
-class MathHelper:    @staticmethod    def add(a, b):        return a + b        @staticmethod    def is_even(number):        return number % 2 == 0
+class MathHelper:
+@staticmethod
+def add(a, b):
+ return a + b
+@staticmethod
+def is_even(number):
+return number % 2 == 0
 ```
 
 Call static methods using the class name:
 
 ```python
-result = MathHelper.add(5, 3)print(result)check = MathHelper.is_even(10)print(check)
+result = MathHelper.add(5, 3)
+print(result)check = MathHelper.is_even(10)
+print(check)
 ```
 
 You can also call them from an object:
@@ -124,7 +160,14 @@ Output:
 Static methods don't access instance or class data:
 
 ```python
-class Calculator:    brand = "Python Calc"        def __init__(self, owner):        self.owner = owner        @staticmethod    def multiply(x, y):        # Cannot access self.owner or Calculator.brand        return x * y
+class Calculator:
+brand = "Python Calc"
+ def __init__(self, owner):
+self.owner = owner
+@staticmethod
+def multiply(x, y):
+ # Cannot access self.owner or Calculator.brand
+ return x * y
 ```
 
 Key Point: Use `@staticmethod` when you need a function that's related to the class but doesn't need access to instance (`self`) or class data. No `self` parameter needed.
@@ -137,7 +180,18 @@ The `@classmethod` decorator creates methods that receive the class itself as 
 Here is an example of a class with class methods:
 
 ```python
-class Student:    school_name = "Python Academy"    student_count = 0        def __init__(self, name):        self.name = name        Student.student_count += 1        @classmethod    def get_school_info(cls):        return f"School: {cls.school_name}, Students: {cls.student_count}"        @classmethod    def create_guest_student(cls):        return cls("Guest")
+class Student:
+school_name = "Python Academy"
+ student_count = 0
+ def __init__(self, name):
+self.name = name
+ Student.student_count += 1
+ @classmethod
+def get_school_info(cls):
+return f"School: {cls.school_name}, Students: {cls.student_count}"
+@classmethod
+ def create_guest_student(cls):
+return cls("Guest")
 ```
 
 Call class methods using the class name:
@@ -149,13 +203,18 @@ info = Student.get_school_info()print(info)
 Create some students:
 
 ```python
-alice = Student("Alice")bob = Student("Bob")updated_info = Student.get_school_info()print(updated_info)
+alice = Student("Alice")
+bob = Student("Bob")
+updated_info = Student.get_school_info()
+print(updated_info)
 ```
 
 Use class methods as alternative constructors:
 
 ```python
-guest = Student.create_guest_student()print(guest.name)print(Student.get_school_info())
+guest = Student.create_guest_student()
+print(guest.name)
+print(Student.get_school_info())
 ```
 
 Output:
@@ -167,7 +226,9 @@ School: Python Academy, Students: 0School: Python Academy, Students: 2Gu
 Class methods can also be called from instances:
 
 ```python
-alice = Student("Alice")info_from_instance = alice.get_school_info()print(info_from_instance)
+alice = Student("Alice")
+info_from_instance = alice.get_school_info()
+print(info_from_instance)
 ```
 
 Output:
@@ -185,25 +246,39 @@ Instance variables are unique to each object, while class variables are shared b
 Here is an example of a class with both types of variables
 
 ```python
-class Student:    # Class variable - shared by all instances    school = "Python High School"        def __init__(self, name, grade):        # Instance variables - unique to each student        self.name = name        self.grade = grade
+class Student:
+# Class variable - shared by all instances
+school = "Python High School"
+def __init__(self, name, grade):
+# Instance variables - unique to each student
+self.name = name
+self.grade = grade
 ```
 
 Create student objects:
 
 ```python
-alice = Student("Alice", "A")bob = Student("Bob", "B")
+alice = Student("Alice", "A")
+bob = Student("Bob", "B")
 ```
 
 Access instance variables (unique to each object):
 
 ```python
-print(alice.name)  # Aliceprint(bob.name)    # Bobprint(alice.grade) # Aprint(bob.grade)   # B
+print(alice.name)
+# Aliceprint(bob.name)
+# Bobprint(alice.grade)
+# Aprint(bob.grade)
+# B
 ```
 
 Access class variables (shared by all objects):
 
 ```python
-print(alice.school)     # Python High Schoolprint(bob.school)       # Python High Schoolprint(Student.school)   # Python High School
+print(alice.school)
+# Python High Schoolprint(bob.school)
+# Python High Schoolprint(Student.school)
+# Python High School
 ```
 
 Now change the class variable:
@@ -215,19 +290,28 @@ Student.school = "Python Academy"
 Check how the change affects all instances:
 
 ```python
-print(alice.school)   # Python Academyprint(bob.school)     # Python Academy
+print(alice.school)
+# Python Academyprint(bob.school)
+ # Python Academy
 ```
 
 Output:
 
 ```python
-AliceBobABPython High SchoolPython High SchoolPython High SchoolPython AcademyPython Academy
+AliceBobABPython High
+SchoolPython High
+SchoolPython High
+SchoolPython
+AcademyPython Academy
 ```
 
 You can also create instance variables after object creation:
 
 ```python
-alice.age = 16  # This creates an instance variableprint(alice.age)  # 16# print(bob.age)  # This would cause an error - bob doesn't have age
+alice.age = 16
+# This creates an instance variableprint(alice.age)
+# 16# print(bob.age)
+# This would cause an error - bob doesn't have age
 ```
 
 Key Difference: Instance variables (created with `self.variable_name`) are unique to each object, while class variables (defined directly in the class) are shared by all objects. Changing a class variable affects all instances.
@@ -242,7 +326,12 @@ Private attributes use underscores to indicate that certain data should not be a
 Here is an example using single underscore (convention for "internal use"):
 
 ```python
-class Person:    def __init__(self, name, age):        self._name = name    # "protected" - internal use        self._age = age      # "protected" - internal use
+class Person:
+ def __init__(self, name, age):
+self._name = name
+# "protected" - internal use
+self._age = age
+# "protected" - internal use
 ```
 
 Single underscore attributes can still be accessed, but it's a signal not to:
@@ -254,7 +343,18 @@ person = Person("Alice", 30)print(person._name)  # Works, but not recom
 Use double underscores for stronger privacy (name mangling):
 
 ```python
-class Person:    def __init__(self, name, age):        self.__name = name   # "private" - gets name mangled        self.__age = age     # "private" - gets name mangled        def get_name(self):        return self.__name        def set_age(self, age):        if age >= 0:            self.__age = age        else:            print("Age must be positive!")
+class Person:
+ def __init__(self, name, age):
+ self.__name = name
+ # "private" - gets name mangled
+ self.__age = age     # "private" - gets name mangled
+def get_name(self):
+return self.__name
+def set_age(self, age):
+if age >= 0:
+self.__age = age
+else:
+print("Age must be positive!")
 ```
 
 **Why use getter and setter methods?** They're like gatekeepers. Instead of letting anyone change `__age` directly (which could result in negative ages or other invalid data), we force them to use `set_age()` which validates the input first. This prevents bugs and ensures data integrity.
@@ -268,7 +368,11 @@ class Person:    def __init__(self, name, age):        self.__na
 Use the accessor methods to interact with private attributes:
 
 ```python
-person = Person("Bob", 25)print(person.get_name())  # Bobperson.set_age(30)        # Valid: age becomes 30person.set_age(-5)        # Invalid: Age must be positive! (age stays 30)
+person = Person("Bob", 25)
+print(person.get_name())
+  # Bobperson.set_age(30)
+# Valid: age becomes 30person.set_age(-5)
+# Invalid: Age must be positive! (age stays 30)
 ```
 
 See the benefit? The `set_age()` method prevents invalid data. Without it, you could accidentally create a person with age -5, which makes no sense!
@@ -276,13 +380,32 @@ See the benefit? The `set_age()` method prevents invalid data. Without it, you
 Double underscore attributes get "name mangled" but can still be accessed:
 
 ```python
-person = Person("Charlie", 35)# This doesn't work:# print(person.__name)  # AttributeError# But this works (discouraged):print(person._Person__name)  # Charlie
+person = Person("Charlie", 35)
+# This doesn't work:# print(person.__name)
+# AttributeError
+# But this works (discouraged):
+print(person._Person__name)
+# Charlie
 ```
 
 **Real-world example - Why all this code?**
 
 ```python
-class BankAccount:    def __init__(self, balance):        self.__balance = balance  # Private: can't be changed directly        def deposit(self, amount):        if amount > 0:            self.__balance += amount            return True        return False        def get_balance(self):        return self.__balance# Without private attributes:# account.__balance = -1000000  # Disaster! Negative balance allowed# With private attributes:account = BankAccount(100)account.deposit(50)           # Safe: validatedprint(account.get_balance())  # 150
+class BankAccount:
+def __init__(self, balance):
+self.__balance = balance
+# Private: can't be changed directly
+def deposit(self, amount):
+if amount > 0:
+self.__balance += amount
+return True
+return False
+def get_balance(self):
+return self.__balance# Without private attributes:
+# account.__balance = -1000000
+# Disaster! Negative balance allowed
+# With private attributes:account = BankAccount(100)account.deposit(50)
+# Safe: validatedprint(account.get_balance())  # 150
 ```
 
 The "extra code" (methods) protects your data from invalid changes. It's like having security guards instead of leaving your valuables unprotected.
@@ -302,13 +425,19 @@ Inheritance allows a class to inherit attributes and methods from another class,
 Here is an example of a parent class:
 
 ```python
-class Animal:    def __init__(self, name):        self.name = name        def info(self):        print(f"I am {self.name}, an animal")
+class Animal:
+def __init__(self, name):
+self.name = name
+def info(self):
+print(f"I am {self.name}, an animal")
 ```
 
 Create a child class that inherits from the parent:
 
 ```python
-class Dog(Animal):    pass  # Inherits everything from Animal
+class Dog(Animal):
+pass
+# Inherits everything from Animal
 ```
 
 The syntax `class Dog(Animal):` means Dog inherits from Animal. Put the parent class name in parentheses.
@@ -316,13 +445,15 @@ The syntax `class Dog(Animal):` means Dog inherits from Animal. Put the parent
 Create objects from both classes:
 
 ```python
-generic_animal = Animal("Creature")buddy = Dog("Buddy")
+generic_animal = Animal("Creature")
+buddy = Dog("Buddy")
 ```
 
 Use the inherited methods:
 
 ```python
-generic_animal.info()buddy.info()
+generic_animal.info()
+buddy.info()
 ```
 
 Output:
@@ -336,7 +467,11 @@ Even though Dog doesn't define `__init__` or `info`, it automatically gets th
 You can add new methods to the child class:
 
 ```python
-class Dog(Animal):    def bark(self):        print(f"{self.name} says Woof!")buddy = Dog("Buddy")buddy.info()  # Inherited methodbuddy.bark()  # New method
+class Dog(Animal):
+def bark(self):
+print(f"{self.name} says Woof!")
+buddy = Dog("Buddy")buddy.info()
+# Inherited methodbuddy.bark()  # New method
 ```
 
 Output:
@@ -354,31 +489,50 @@ The `super()` function allows a child class to call methods from its parent cl
 Here is an example of using `super()` in the constructor:
 
 ```python
-class Animal:    def __init__(self, name):        self.name = name        print(f"Animal created: {name}")class Dog(Animal):    def __init__(self, name, breed):        super().__init__(name)  # Call parent's __init__        self.breed = breed        print(f"Dog breed set: {breed}")
+class Animal:
+def __init__(self, name):
+self.name = name
+print(f"Animal created: {name}")class Dog(Animal):
+ def __init__(self, name, breed):
+super().__init__(name)
+# Call parent's __init__
+self.breed = breed
+print(f"Dog breed set: {breed}")
 ```
 
 Create a dog object:
 
 ```python
-buddy = Dog("Buddy", "Golden Retriever")print(f"Name: {buddy.name}, Breed: {buddy.breed}")
+buddy = Dog("Buddy", "Golden Retriever")
+print(f"Name: {buddy.name}, Breed: {buddy.breed}")
 ```
 
 Output:
 
 ```python
-Animal created: BuddyDog breed set: Golden RetrieverName: Buddy, Breed: Golden Retriever
+Animal created: BuddyDog breed set: Golden Retriever
+Name: Buddy, Breed: Golden Retriever
 ```
 
 Use `super()` to extend parent methods:
 
 ```python
-class Animal:    def make_sound(self):        print("Generic animal sound")class Dog(Animal):    def make_sound(self):        super().make_sound()  # Call parent's method first        print("Woof!")        # Add dog-specific behavior
+class Animal:
+def make_sound(self):
+print("Generic animal sound")
+class Dog(Animal):
+def make_sound(self):
+super().make_sound()
+# Call parent's method first
+print("Woof!")
+# Add dog-specific behavior
 ```
 
 Call the extended method:
 
 ```python
-buddy = Dog("Buddy", "Golden Retriever")buddy.make_sound()
+buddy = Dog("Buddy", "Golden Retriever")
+buddy.make_sound()
 ```
 
 Output:
@@ -390,7 +544,11 @@ Generic animal soundWoof!
 Without `super()`, you would lose the parent's functionality:
 
 ```python
-class Cat(Animal):    def make_sound(self):        print("Meow!")  # Only cat sound, parent method ignoredcat = Cat("Whiskers")cat.make_sound()
+class Cat(Animal):
+def make_sound(self):
+print("Meow!")
+# Only cat sound, parent method ignored
+cat = Cat("Whiskers")cat.make_sound()
 ```
 
 Output:
@@ -408,13 +566,22 @@ Method overriding allows a child class to provide its own implementation of a me
 Here is an example of a parent class with methods:
 
 ```python
-class Animal:    def __init__(self, name):        self.name = name        def make_sound(self):        print("Some generic animal sound")        def info(self):        print(f"I am {self.name}")
+class Animal:
+def __init__(self, name):
+ self.name = name
+def make_sound(self):       
+print("Some generic animal sound")
+ def info(self):
+print(f"I am {self.name}")
 ```
 
 Create a child class that overrides one method:
 
 ```python
-class Dog(Animal):    def make_sound(self):        print("Woof! Woof!")  # Override the parent method
+class Dog(Animal):
+def make_sound(self):
+ print("Woof! Woof!")
+# Override the parent method
 ```
 
 The `make_sound` method in Dog replaces the one from Animal, but `info` is still inherited unchanged.
@@ -422,31 +589,43 @@ The `make_sound` method in Dog replaces the one from Animal, but `info` is s
 Create instances and test the methods:
 
 ```python
-animal = Animal("Generic Animal")dog = Dog("Buddy")
+animal = Animal("Generic Animal")
+dog = Dog("Buddy")
 ```
 
 Call the overridden method:
 
 ```python
-animal.make_sound()dog.make_sound()
+animal.make_sound()
+dog.make_sound()
 ```
 
 Call the non-overridden method:
 
 ```python
-animal.info()dog.info()
+animal.info()
+dog.info()
 ```
 
 Output:
 
 ```python
-Some generic animal soundWoof! Woof!I am Generic AnimalI am Buddy
+Some generic animal soundWoof! Woof!
+I am Generic Animal
+I am Buddy
 ```
 
 You can override any inherited method:
 
 ```python
-class Cat(Animal):    def make_sound(self):        print("Meow!")        def info(self):        print(f"I am {self.name}, a sneaky cat")cat = Cat("Whiskers")cat.make_sound()cat.info()
+class Cat(Animal):
+def make_sound(self):
+print("Meow!")
+def info(self):
+print(f"I am {self.name}, a sneaky cat")
+cat = Cat("Whiskers")
+cat.make_sound()
+cat.info()
 ```
 
 Output:
@@ -464,13 +643,26 @@ Multiple inheritance allows a class to inherit from more than one parent class, 
 Here are two parent classes:
 
 ```python
-class Animal:    def __init__(self, name):        self.name = name        def eat(self):        return f"{self.name} is eating"class Flyable:    def fly(self):        return f"{self.name} is flying"
+class Animal:
+def __init__(self, name):
+self.name = name
+def eat(self):
+return f"{self.name} is eating"
+class Flyable:
+def fly(self):
+return f"{self.name} is flying"
 ```
 
 Create a child class that inherits from both parents:
 
 ```python
-class Bird(Animal, Flyable):    def __init__(self, name, species):        super().__init__(name)  # Calls Animal's __init__        self.species = species        def sing(self):        return f"{self.name} is singing"
+class Bird(Animal, Flyable):
+ def __init__(self, name, species):
+ super().__init__(name)
+ # Calls Animal's __init__
+self.species = species
+def sing(self):
+return f"{self.name} is singing"
 ```
 
 The syntax `class Bird(Animal, Flyable):` means Bird inherits from both Animal and Flyable.
@@ -522,7 +714,12 @@ _Method Resolution Order (MRO) is the sequence Python uses to look for methods w
 Here is an example with multiple classes having the same method:
 
 ```python
-class A:    def method(self):        return "Method from A"class B:    def method(self):        return "Method from B"class C(A, B):    pass
+class A:
+def method(self):
+return "Method from A"class B:
+def method(self):
+return "Method from B"class C(A, B):
+ pass
 ```
 
 Check the MRO using `__mro__`:
@@ -534,7 +731,10 @@ print(C.__mro__)
 Output:
 
 ```python
-(<class '__main__.C'>, <class '__main__.A'>, <class '__main__.B'>, <class 'object'>)
+(<class '__main__.C'>,
+<class '__main__.A'>,
+<class '__main__.B'>,
+<class 'object'>)
 ```
 
 The `__mro__` attribute is a tuple that contains all classes in the resolution order. The first element (`__mro__[0]`) is always the class itself (C), followed by parent classes from left to right (A, then B), and finally the built-in object class.
@@ -556,13 +756,21 @@ Python found the method in class A first (at index 1 in the MRO), so it used tha
 Change the inheritance order to see the difference:
 
 ```python
-class D(B, A):  # B comes before A now    passprint(D.__mro__)d = D()print(d.method())
+class D(B, A):
+ # B comes before A now
+pass
+print(D.__mro__)d = D()
+print(d.method())
 ```
 
 Output:
 
 ```python
-(<class '__main__.D'>, <class '__main__.B'>, <class '__main__.A'>, <class 'object'>)Method from B
+(<class '__main__.D'>,
+ <class '__main__.B'>,
+<class '__main__.A'>,
+<class 'object'>)
+Method from B
 ```
 
 Now Python finds B's method first because B comes before A in the inheritance list. You can access specific classes in the MRO using indexing - `D.__mro__[0]` is D itself, `D.__mro__[1]` is B, and `D.__mro__[2]` is A.
